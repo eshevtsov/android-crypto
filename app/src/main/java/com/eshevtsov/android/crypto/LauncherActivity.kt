@@ -8,7 +8,10 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.eshevtsov.android.crypto.core.feature.bindView
+import com.eshevtsov.android.crypto.core.feature.createConnectionLostSnackbar
+import com.eshevtsov.android.crypto.data.network.ConnectionReceiver
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
 
@@ -22,6 +25,9 @@ class LauncherActivity : AppCompatActivity(R.layout.activity_main) {
 
     private val navController: NavController?
         get() = navHostFragment?.navController
+
+    private val connectionReceiver by lazy { ConnectionReceiver(this) }
+    private var snackbar: Snackbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         supportFragmentManager.fragmentFactory = get()
@@ -37,6 +43,17 @@ class LauncherActivity : AppCompatActivity(R.layout.activity_main) {
                 closeKeyboard()
             }
         }
+        connectionReceiver.registerNetworkCallback(
+            onLost = {
+                if (snackbar == null) {
+                    snackbar = createConnectionLostSnackbar().also { it.show() }
+                }
+            },
+            onConnect = {
+                snackbar?.dismiss()
+                snackbar = null
+            }
+        )
     }
 
     private fun closeKeyboard() {
@@ -49,6 +66,7 @@ class LauncherActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onSupportNavigateUp() = navController?.navigateUp() ?: false
 
     override fun onDestroy() {
+        connectionReceiver.unregisterNetworkCallback()
         navigator.unbind()
         super.onDestroy()
     }

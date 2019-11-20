@@ -6,5 +6,5 @@ import com.eshevtsov.android.crypto.data.dto.CoinDetailDto
 class GetCoinDetailModelUseCase(
     private val dataSource: ICoinDetailsDataSource
 ) {
-    suspend operator fun invoke(id: Int): CoinDetailDto = dataSource.detailInfo(id)
+    suspend operator fun invoke(id: Int): CoinDetailDto? = dataSource.detailInfo(id)
 }

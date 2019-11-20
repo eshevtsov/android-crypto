@@ -34,6 +34,7 @@ dependencies {
 
     implementation(Dependencies.picasso)
 
+    implementation(Dependencies.material)
     implementation(Dependencies.coroutinesAndroid)
     implementation(Dependencies.lifecycle)
     implementation(Dependencies.lifecycleCommon)

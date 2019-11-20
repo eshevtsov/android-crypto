@@ -17,14 +17,19 @@ class CoinListRepository(
     override suspend fun list(): List<CoinDto> {
         var cash = database.coinDao().list()
         if (shouldUpdate(lastListUpdate) || cash.isEmpty()) {
-            val resultDto = remote.list()
-            cash = resultDto.data
-
-            database.coinDao().insertOrUpdateAll(*cash.toTypedArray())
-            lastListUpdate = currentMillis()
+            safeRemoteUpdate()?.let { cash = it }
         }
         return cash
     }
+
+    private suspend fun safeRemoteUpdate(): List<CoinDto>? = runCatching {
+        val resultDto = remote.list()
+        val cash = resultDto.data
+        database.coinDao().insertOrUpdateAll(*cash.toTypedArray())
+        lastListUpdate = currentMillis()
+
+        cash
+    }.getOrNull()
 
     private fun shouldUpdate(lastUpdate: Long) = currentMillis() - lastUpdate >= updateInterval
 }

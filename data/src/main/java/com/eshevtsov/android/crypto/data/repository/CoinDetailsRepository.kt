@@ -14,24 +14,28 @@ class CoinDetailsRepository(
 ) : ICoinDetailsDataSource {
     private var lastDetailUpdate: Long = currentMillis() + updateInterval
 
-    override suspend fun detailInfo(id: Int): CoinDetailDto {
+    override suspend fun detailInfo(id: Int): CoinDetailDto? {
         var cash = database.coinDetailDao()
             .listById(intArrayOf(id))
             .firstOrNull { it.id == id }
 
         if (shouldUpdate(lastDetailUpdate) || cash == null) {
-            val stringId = id.toString()
-            val resultDto = remote.detailInfo(stringId)
-            cash = resultDto.data[stringId]
-                ?: error("Can't get coin detail info for #id $id.")
-
-            database.coinDetailDao().insertAll(cash)
-            lastDetailUpdate = currentMillis()
+            cash = safeRemoteUpdate(id)
         }
-
         return cash
     }
 
+    private suspend fun safeRemoteUpdate(id: Int): CoinDetailDto? = runCatching {
+        val stringId = id.toString()
+        val resultDto = remote.detailInfo(stringId)
+        val cash = resultDto.data[stringId]
+            ?: error("Can't get coin detail info for #id $id.")
+
+        database.coinDetailDao().insertAll(cash)
+        lastDetailUpdate = currentMillis()
+
+        cash
+    }.getOrNull()
+
     private fun shouldUpdate(lastUpdate: Long) = currentMillis() - lastUpdate >= updateInterval
 }
-
