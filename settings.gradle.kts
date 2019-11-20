@@ -2,5 +2,6 @@ rootProject.name="Crypto"
 
 include(
     Modules.app,
-    Modules.data
+    Modules.data,
+    Modules.coreDesign
 )
