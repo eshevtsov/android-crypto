@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation_graph"
+    app:startDestination="@id/fragment_currency_list"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/fragment_currency_list"
+        android:name="com.eshevtsov.android.crypto.feature.currency.list.ui.CurrencyListFragment"
+        android:label="CurrencyListFragment"
+        tools:layout="@layout/fragment_currency_list">
+
+        <action
+            android:id="@+id/action_currency_list_to_detail"
+            app:destination="@id/fragment_currency_detail"/>
+
+        <action
+            android:id="@+id/action_currency_list_to_filter"
+            app:destination="@id/fragment_currency_filter"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_currency_detail"
+        android:name="com.eshevtsov.android.crypto.feature.currency.detail.ui.CurrencyDetailFragment"
+        android:label="CurrencyDetailFragment"
+        tools:layout="@layout/fragment_currency_detail">
+
+        <argument
+            android:name="id"
+            app:argType="integer"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_currency_filter"
+        android:name="com.eshevtsov.android.crypto.feature.currency.filter.ui.CurrencyFilterFragment"
+        android:label="CurrencyFilterFragment"
+        tools:layout="@layout/fragment_currency_filter"/>
+
+    <fragment
+        android:id="@+id/fragment_currency_converter"
+        android:name="com.eshevtsov.android.crypto.feature.currency.converter.ui.CurrencyConverterFragment"
+        android:label="CurrencyConverterFragment"
+        tools:layout="@layout/fragment_currency_converter"/>
+</navigation>

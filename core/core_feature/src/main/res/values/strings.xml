@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lose_internet_connection">Internet connection is not available, please check the settings.</string>
+</resources>

@@ -1,0 +1,84 @@
+<resources>
+
+    <style name="AppTheme.Launcher" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_accent</item>
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_accent</item>
+        <item name="android:windowBackground">@color/color_background</item>
+    </style>
+
+    <style name="Widget.AppTheme.TextView.Small" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/textSize_12</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="Widget.AppTheme.TextView.Normal" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/textSize_14</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="Widget.AppTheme.TextView.Large" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/textSize_16</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="TextView.OnPrimary.Small" parent="Widget.AppTheme.TextView.Small">
+        <item name="android:textColor">@color/color_text_on_primary</item>
+    </style>
+
+    <style name="TextView.OnPrimary.Small.MediumStyle" parent="TextView.OnPrimary.Small">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextView.OnPrimary.Normal" parent="Widget.AppTheme.TextView.Normal">
+        <item name="android:textColor">@color/color_text_on_primary</item>
+    </style>
+
+    <style name="TextView.OnPrimary.Normal.MediumStyle" parent="TextView.OnPrimary.Normal">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextView.OnPrimary.Large" parent="Widget.AppTheme.TextView.Large">
+        <item name="android:textColor">@color/color_text_on_primary</item>
+    </style>
+
+    <style name="TextView.OnBackground.Small" parent="Widget.AppTheme.TextView.Small">
+        <item name="android:textColor">@color/color_text_on_background</item>
+    </style>
+
+    <style name="TextView.OnBackground.Normal" parent="Widget.AppTheme.TextView.Normal">
+        <item name="android:textColor">@color/color_text_on_background</item>
+    </style>
+
+    <style name="TextView.OnBackground.Normal.MediumStyle" parent="TextView.OnBackground.Normal">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextView.OnBackground.Large" parent="Widget.AppTheme.TextView.Large">
+        <item name="android:textColor">@color/color_text_on_background</item>
+    </style>
+
+    <style name="TextView.OnBackground.Small.MediumStyle" parent="TextView.OnBackground.Small">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextView.OnBackground.Light.Small" parent="Widget.AppTheme.TextView.Small">
+        <item name="android:textColor">@color/color_text_light_on_background</item>
+    </style>
+
+    <style name="TextView.OnBackground.Light.Normal" parent="Widget.AppTheme.TextView.Normal">
+        <item name="android:textColor">@color/color_text_light_on_background</item>
+    </style>
+
+    <style name="TextView.OnBackground.Light.Small.MediumStyle" parent="TextView.OnBackground.Light.Small">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+</resources>

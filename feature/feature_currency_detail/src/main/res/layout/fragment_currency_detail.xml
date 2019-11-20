@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.eshevtsov.android.crypto.feature.currency.detail.ui.CurrencyDetailViewModel"/>
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/spacing_16">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|top"
+            android:scaleType="center"
+            android:contentDescription="@string/currency_detail_logo_content_description"
+            app:srcUrl="@{viewModel.coinDetail.logo}"
+            tools:background="@color/color_accent"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:text="@{viewModel.coinDetail.name}"
+                tools:text="Currency name"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:text="@{viewModel.coinDetail.symbol}"
+                tools:text="BTC"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:fontFamily="sans-serif"
+                android:textSize="15sp"
+                android:text="@{viewModel.coinDetail.description}"
+                tools:text="some loooooooooooooooooooooooooooooooooooong long long description"/>
+
+            <ExpandableListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_16"
+                android:visibility="@{viewModel.coinDetail.urls != null}"
+                android:indicatorRight="?android:attr/expandableListPreferredItemIndicatorRight"
+                android:divider="@android:color/darker_gray"
+                android:dividerHeight="0.5dp"
+                app:items="@{viewModel.coinDetail.urls}"
+                tools:visibility="visible"
+                tools:listitem="@layout/simple_list_header_layout"/>
+        </LinearLayout>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.progress}"/>
+    </FrameLayout>
+</layout>

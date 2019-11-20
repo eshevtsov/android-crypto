@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.eshevtsov.android.crypto.feature.currency.converter.ui.CurrencyConverterViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_16">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:baselineAligned="false">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/currency_converter_text_field_amount_from"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/spacing_16"
+                android:hint="@string/currency_converter_text_field_amount_hint"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:textColor="@drawable/disabled_text_color_selector"
+                    android:text="@={viewModel.fromAmount}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/currency_converter_text_field_from"
+                android:layout_width="@dimen/currency_converter_right_column_width"
+                android:layout_height="wrap_content"
+                android:hint="@string/currency_converter_text_field_from_hint"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+
+                <AutoCompleteTextView
+                    android:id="@+id/currency_converter_expand_from"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@drawable/disabled_text_color_selector"
+                    android:text="@={viewModel.fromCoin}"
+                    app:coins="@{viewModel.coinIds}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:baselineAligned="false"
+            android:layout_marginTop="@dimen/spacing_8"
+            android:layout_marginBottom="@dimen/spacing_8">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/spacing_16"
+                android:paddingBottom="@dimen/spacing_16"
+                android:layout_marginEnd="@dimen/spacing_16"
+                android:gravity="center"
+                android:text="@{viewModel.conversionResult}"
+                tools:text="Converted value"/>
+
+            <ImageButton
+                android:layout_width="@dimen/currency_converter_right_column_width"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:paddingTop="@dimen/spacing_12"
+                android:paddingBottom="@dimen/spacing_12"
+                android:contentDescription="@string/currency_converter_image_swap_content_description"
+                android:backgroundTint="@color/color_primary"
+                android:tint="@color/color_accent"
+                android:src="@drawable/ic_swap_vert"
+                android:onClick="@{() -> viewModel.swapCoins()}"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:baselineAligned="false">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/currency_converter_text_field_amount_to"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/spacing_16"
+                android:hint="@string/currency_converter_text_field_amount_hint"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:textColor="@drawable/disabled_text_color_selector"
+                    android:text="@{viewModel.toAmount}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/currency_converter_text_field_to"
+                android:layout_width="@dimen/currency_converter_right_column_width"
+                android:layout_height="wrap_content"
+                android:hint="@string/currency_converter_text_field_to_hint"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+
+                <AutoCompleteTextView
+                    android:id="@+id/currency_converter_expand_to"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@drawable/disabled_text_color_selector"
+                    android:text="@={viewModel.toCoin}"
+                    app:coins="@{viewModel.coinIds}"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_42"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.progress}"/>
+    </LinearLayout>
+</layout>
