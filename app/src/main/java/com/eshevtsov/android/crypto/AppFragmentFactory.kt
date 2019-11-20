@@ -2,6 +2,7 @@ package com.eshevtsov.android.crypto
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
+import com.eshevtsov.android.crypto.feature.currency.converter.ui.CurrencyConverterFragment
 import com.eshevtsov.android.crypto.feature.currency.detail.ui.CurrencyDetailFragment
 import com.eshevtsov.android.crypto.feature.currency.filter.ui.CurrencyFilterFragment
 import com.eshevtsov.android.crypto.feature.currency.list.ui.CurrencyListFragment
@@ -19,6 +20,7 @@ class AppFragmentFactory(
             CurrencyListFragment::class.java -> CurrencyListFragment(koin.get(), koin.get())
             CurrencyDetailFragment::class.java -> CurrencyDetailFragment(koin.get())
             CurrencyFilterFragment::class.java -> CurrencyFilterFragment(koin.get(), koin.get())
+            CurrencyConverterFragment::class.java -> CurrencyConverterFragment(koin.get())
             else -> super.instantiate(classLoader, className)
         }
 }

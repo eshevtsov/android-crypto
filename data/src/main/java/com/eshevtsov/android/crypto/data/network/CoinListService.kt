@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface CoinListService {
 
-    @GET("listings/latest")
+    @GET("cryptocurrency/listings/latest?limit=5000")
     suspend fun list(): CoinListResponseDto
 }

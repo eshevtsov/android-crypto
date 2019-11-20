@@ -10,4 +10,5 @@
     <color name="color_text_on_background">@color/color_primary_dark</color>
     <color name="color_text_light_on_background">#9E9E9E</color>
     <color name="color_background_light_gray">#F5F5F5</color>
+    <color name="color_bottom_nav_active_text">#ff9e9e</color>
 </resources>

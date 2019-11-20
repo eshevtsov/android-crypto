@@ -38,4 +38,10 @@
         android:name="com.eshevtsov.android.crypto.feature.currency.filter.ui.CurrencyFilterFragment"
         android:label="CurrencyFilterFragment"
         tools:layout="@layout/fragment_currency_filter"/>
+
+    <fragment
+        android:id="@+id/fragment_currency_converter"
+        android:name="com.eshevtsov.android.crypto.feature.currency.converter.ui.CurrencyConverterFragment"
+        android:label="CurrencyConverterFragment"
+        tools:layout="@layout/fragment_currency_converter"/>
 </navigation>

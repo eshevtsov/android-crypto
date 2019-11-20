@@ -39,6 +39,7 @@ dependencies {
     api(project(Modules.featureCurrencyList))
     api(project(Modules.featureCurrencyDetail))
     api(project(Modules.featureCurrencyFilter))
+    api(project(Modules.featureCurrencyConverter))
 
     implementation(Dependencies.kotlinStd)
 

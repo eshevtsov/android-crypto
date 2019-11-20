@@ -7,5 +7,6 @@ include(
     Modules.coreFeature,
     Modules.featureCurrencyList,
     Modules.featureCurrencyDetail,
-    Modules.featureCurrencyFilter
+    Modules.featureCurrencyFilter,
+    Modules.featureCurrencyConverter
 )

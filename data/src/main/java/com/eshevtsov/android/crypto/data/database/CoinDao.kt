@@ -12,6 +12,9 @@ interface CoinDao {
     @Query("SELECT id, symbol, visible FROM coin")
     suspend fun listIds(): List<CoinIdDto>
 
+    @Query("SELECT * FROM coin WHERE id = :id")
+    suspend fun get(id: Int): CoinDto?
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(vararg coins: CoinDto): List<Long>
 

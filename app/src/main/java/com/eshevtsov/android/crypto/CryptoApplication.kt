@@ -8,17 +8,10 @@ class CryptoApplication : Application() {
 
     override fun onCreate(){
         super.onCreate()
+
         startKoin {
             androidContext(this@CryptoApplication)
-            modules(
-                listOf(
-                    appModule,
-                    dataModule,
-                    featureCurrencyDetailModule,
-                    featureCurrencyListModule,
-                    featureCurrencyFilterModule
-                )
-            )
+            modules(koinModules)
         }
     }
 }

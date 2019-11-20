@@ -15,6 +15,10 @@ import com.eshevtsov.android.crypto.data.repository.CoinDetailsRepository
 import com.eshevtsov.android.crypto.data.repository.CoinIdsRepository
 import com.eshevtsov.android.crypto.data.repository.CoinListRepository
 import com.eshevtsov.android.crypto.data.repository.CryptoToolsRepository
+import com.eshevtsov.android.crypto.feature.currency.converter.domain.ConvertCurrencyUseCase
+import com.eshevtsov.android.crypto.feature.currency.converter.domain.FormatConversionUseCase
+import com.eshevtsov.android.crypto.feature.currency.converter.domain.GetCoinIdsListUseCase
+import com.eshevtsov.android.crypto.feature.currency.converter.ui.CurrencyConverterViewModel
 import com.eshevtsov.android.crypto.feature.currency.detail.domain.GetCoinDetailModelUseCase
 import com.eshevtsov.android.crypto.feature.currency.detail.ui.CurrencyDetailViewModel
 import com.eshevtsov.android.crypto.feature.currency.filter.domain.GetCoinIdsUseCase
@@ -34,6 +38,17 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+
+val koinModules by lazy {
+    listOf(
+        appModule,
+        dataModule,
+        featureCurrencyDetailModule,
+        featureCurrencyListModule,
+        featureCurrencyFilterModule,
+        featureCurrencyConverterModule
+    )
+}
 
 val appModule by lazy {
     module {
@@ -65,6 +80,15 @@ val featureCurrencyFilterModule by lazy {
         single { SaveFilterUseCase(get()) }
         viewModel { CurrencyFilterViewModel(get(), get(), get()) }
         single { get<AppNavigator>() as CurrencyFilterNavigation }
+    }
+}
+
+val featureCurrencyConverterModule by lazy {
+    module {
+        single { ConvertCurrencyUseCase(get()) }
+        single { GetCoinIdsListUseCase(get()) }
+        single { FormatConversionUseCase() }
+        viewModel { CurrencyConverterViewModel(get(), get(), get(), get()) }
     }
 }
 

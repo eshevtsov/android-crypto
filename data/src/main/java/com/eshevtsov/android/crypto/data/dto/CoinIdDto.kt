@@ -5,3 +5,5 @@ data class CoinIdDto(
     val symbol: String,
     var visible: Boolean = true
 )
+
+val UsdCoinIdDto = CoinIdDto(2781, "USD")

@@ -10,14 +10,13 @@ data class CoinDto(
     val id: Int,
     val name: String,
     val symbol: String,
-    val slug: String,
     val quote: Map<String, QuoteObjectDto>,
 
     @Json(name = "cmc_rank")
-    val cmcRank: Int,
+    val cmcRank: Int? = null,
 
     @Json(name = "num_market_pairs")
-    val numMarketPairs: Int,
+    val numMarketPairs: Int? = null,
 
     @Json(name = "circulating_supply")
     val circulatingSupply: Double? = null,
@@ -37,5 +36,7 @@ data class CoinDto(
     @Json(name = "date_added")
     val dateAdded:  String? = null,
 
-    var visible: Boolean = true
+    var visible: Boolean = true,
+    val slug: String? = null,
+    val amount: Double? = null
 )

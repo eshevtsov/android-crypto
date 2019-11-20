@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="currency_converter_text_field_from_hint">From</string>
+    <string name="currency_converter_text_field_to_hint">To</string>
+    <string name="currency_converter_text_field_amount_hint">Amount</string>
+    <string name="currency_converter_image_swap_content_description">Swap</string>
+</resources>
