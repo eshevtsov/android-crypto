@@ -17,7 +17,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name="com.eshevtsov.android.crypto.LauncherActivity">
+        <activity
+            android:name="com.eshevtsov.android.crypto.LauncherActivity"
+            android:theme="@style/AppTheme.Launcher">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

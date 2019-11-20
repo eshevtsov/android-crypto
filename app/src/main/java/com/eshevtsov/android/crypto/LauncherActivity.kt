@@ -9,9 +9,12 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.eshevtsov.android.crypto.core.feature.bindView
 import com.eshevtsov.android.crypto.core.feature.createConnectionLostSnackbar
+import com.eshevtsov.android.crypto.data.ONE_SECOND_IN_MILLIS
 import com.eshevtsov.android.crypto.data.network.ConnectionReceiver
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
 
@@ -30,9 +33,17 @@ class LauncherActivity : AppCompatActivity(R.layout.activity_main) {
     private var snackbar: Snackbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         supportFragmentManager.fragmentFactory = get()
         super.onCreate(savedInstanceState)
 
+        runBlocking {
+            delay(2 * ONE_SECOND_IN_MILLIS)
+            init()
+        }
+    }
+
+    private fun init() {
         navController?.let {
             navigator.bind(it)
             NavigationUI.setupWithNavController(bottomNav, it)

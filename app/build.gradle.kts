@@ -52,6 +52,7 @@ dependencies {
     implementation(Dependencies.koinScope)
     implementation(Dependencies.koinViewModel)
 
+    implementation(Dependencies.coroutinesAndroid)
     implementation(Dependencies.navigation)
     implementation(Dependencies.navigationUi)
 
