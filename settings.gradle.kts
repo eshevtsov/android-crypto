@@ -6,5 +6,6 @@ include(
     Modules.coreDesign,
     Modules.coreFeature,
     Modules.featureCurrencyList,
-    Modules.featureCurrencyDetail
+    Modules.featureCurrencyDetail,
+    Modules.featureCurrencyFilter
 )
