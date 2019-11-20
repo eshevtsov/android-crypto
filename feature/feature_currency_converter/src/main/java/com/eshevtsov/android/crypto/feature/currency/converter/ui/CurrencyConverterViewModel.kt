@@ -15,12 +15,16 @@ class CurrencyConverterViewModel(
     private val formatConversion: FormatConversionUseCase,
     private val scheduler: Scheduler
 ) : ViewModel() {
+    val progress = MutableLiveData<Boolean>()
+
     val coinIds: LiveData<List<CoinIdDto>> =
         liveData(scheduler.IO) {
+            progress.postValue(true)
             val items = getCoinIds()
             emit(items)
             fromCoin.postValue(items[0].symbol)
             toCoin.postValue(items[0].symbol)
+            progress.postValue(false)
         }
 
     val fromAmount = MutableLiveData<String>()
@@ -33,7 +37,9 @@ class CurrencyConverterViewModel(
         MediatorLiveData<String>().apply {
             val observer = Observer<String> {
                 viewModelScope.launch(scheduler.IO) {
+                    progress.postValue(true)
                     this@apply.postValue(convertCurrency())
+                    progress.postValue(false)
                 }
             }
             this.addSource(fromAmount, observer)

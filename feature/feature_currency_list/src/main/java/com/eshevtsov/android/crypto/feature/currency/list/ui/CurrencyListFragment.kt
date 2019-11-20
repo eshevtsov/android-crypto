@@ -29,14 +29,15 @@ class CurrencyListFragment(
             navigation.navigateToDetail(model.id)
         }
 
+        FragmentCurrencyListBinding.bind(view).apply {
+            adapter = currencyAdapter
+            viewModel = this@CurrencyListFragment.viewModel
+        }
+
         viewModel.coinModels.observe(viewLifecycleOwner, Observer { items ->
             currencyAdapter.setItems(items)
         })
         viewModel.initData()
-
-        FragmentCurrencyListBinding.bind(view).apply {
-            adapter = currencyAdapter
-        }
     }
 
     override fun onDestroyView() {

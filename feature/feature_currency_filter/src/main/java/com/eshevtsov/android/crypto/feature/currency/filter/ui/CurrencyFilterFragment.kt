@@ -35,6 +35,7 @@ class CurrencyFilterFragment(
         FragmentCurrencyFilterBinding.bind(view).apply {
             lifecycleOwner = viewLifecycleOwner
             adapter = currencyAdapter
+            viewModel = this@CurrencyFilterFragment.viewModel
         }
     }
 

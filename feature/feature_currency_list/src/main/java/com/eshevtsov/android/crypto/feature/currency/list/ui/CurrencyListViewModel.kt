@@ -11,10 +11,13 @@ class CurrencyListViewModel(
     private val scheduler: Scheduler
 ) : ViewModel() {
     val coinModels = MutableLiveData<List<CoinModel>>()
+    val progress = MutableLiveData<Boolean>()
 
     fun initData() {
         viewModelScope.launch(scheduler.IO) {
+            progress.postValue(true)
             coinModels.postValue(getCoinModels())
+            progress.postValue(false)
         }
     }
 }

@@ -13,8 +13,15 @@ class CurrencyFilterViewModel(
     private val saveFilter: SaveFilterUseCase,
     private val scheduler: Scheduler
 ) : ViewModel() {
-    val coinIds: LiveData<List<CoinIdDto>> = liveData(scheduler.IO) { emit(getCoinIds()) }
+    val coinIds: LiveData<List<CoinIdDto>> =
+        liveData(scheduler.IO) {
+            progress.postValue(true)
+            emit(getCoinIds())
+            progress.postValue(false)
+        }
+
     val saved = SingleLiveEvent<Boolean>()
+    val progress = MutableLiveData<Boolean>()
 
     fun saveFilters() {
         viewModelScope.launch(scheduler.IO) {
