@@ -5,5 +5,6 @@ include(
     Modules.data,
     Modules.coreDesign,
     Modules.coreFeature,
-    Modules.featureCurrencyList
+    Modules.featureCurrencyList,
+    Modules.featureCurrencyDetail
 )
