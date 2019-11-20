@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="api_base_url">https://pro-api.coinmarketcap.com/v1/cryptocurrency/</string>
+    <string name="api_auth_header_name">X-CMC_PRO_API_KEY</string>
+    <string name="api_auth_header_key" tools:ignore="TypographyDashes">949718af-39e1-4f05-a3a7-b102118e20a6</string>
+    <string name="room_database_name">crypto_room_db</string>
+</resources>

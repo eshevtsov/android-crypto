@@ -32,14 +32,35 @@ android {
     }
 
     dataBinding.isEnabled = true
-    lintOptions.isAbortOnError = false
+    lintOptions.isAbortOnError = true
 }
 
 dependencies {
+    api(project(Modules.featureCurrencyList))
+    api(project(Modules.featureCurrencyDetail))
+    api(project(Modules.featureCurrencyFilter))
+
     implementation(Dependencies.kotlinStd)
 
     implementation(Dependencies.appcompat)
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.material)
     implementation(Dependencies.constraintlayout)
+
+    implementation(Dependencies.koinExt)
+    implementation(Dependencies.koinScope)
+    implementation(Dependencies.koinViewModel)
+
+    implementation(Dependencies.navigation)
+    implementation(Dependencies.navigationUi)
+
+    implementation(Dependencies.retrofit)
+    implementation(Dependencies.retrofitMoshi)
+    implementation(Dependencies.moshi)
+    implementation(Dependencies.okhttp3)
+    implementation(Dependencies.okhttp3Logging)
+
+    implementation(Dependencies.roomKtx)
+    implementation(Dependencies.roomRuntime)
+    kapt(Compilers.roomCompiler)
 }
